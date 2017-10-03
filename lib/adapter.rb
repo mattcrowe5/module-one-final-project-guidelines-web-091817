@@ -29,7 +29,6 @@ class Adapter
       beer['ingredients'].each do |key, value|
         if value.class == Array
           value.each do |array|
-          # binding.pry
           ingredient_object = Ingredient.find_or_create_by(name: "#{array['name']} #{key}")
           beer_object.ingredients << ingredient_object
         end
@@ -39,6 +38,7 @@ class Adapter
       end
     end
   end
-end
 
-#Adapter.match_beers_ingredients
+
+
+end
