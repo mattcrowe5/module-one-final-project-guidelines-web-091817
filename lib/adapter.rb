@@ -22,23 +22,23 @@ class Adapter
     end
   end
 
-=begin
-  WORKING ON THIS 
-  def id
-    beer_hash
-    Beer.all.each.tap do |beer|
-      beer_hash[beer.name] = beer.id
+  def self.match_beers_ingredients
+    get_beer_hash.each do |beer|
+      beer_object = Beer.find_or_create_by(name: beer['name'])
+
+      beer['ingredients'].each do |key, value|
+        if value.class == Array
+          value.each do |array|
+          # binding.pry
+          ingredient_object = Ingredient.find_or_create_by(name: "#{array['name']} #{key}")
+          beer_object.ingredients << ingredient_object
+        end
+        else
+          beer_object.ingredients << Ingredient.find_or_create_by(name: value)
+        end
+      end
     end
-
-    Ingredient.all.each.tap do |ingredient|
-      ingredient_hash[ingredient.name] = ingredient.id
-    end
-
-=end
-
-
-
-
-
-
+  end
 end
+
+#Adapter.match_beers_ingredients
