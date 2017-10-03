@@ -39,6 +39,10 @@ class Adapter
     end
   end
 
-
+  
 
 end
+
+
+
+#Adapter.match_beers_ingredients
