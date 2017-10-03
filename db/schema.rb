@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 3) do
+ActiveRecord::Schema.define(version: 5) do
 
   create_table "beer_ingredients", force: :cascade do |t|
     t.integer "beer_id"
@@ -23,6 +23,15 @@ ActiveRecord::Schema.define(version: 3) do
 
   create_table "ingredients", force: :cascade do |t|
     t.text "name"
+  end
+
+  create_table "user_beers", force: :cascade do |t|
+    t.integer "beer_id"
+    t.integer "user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
   end
 
 end

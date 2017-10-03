@@ -23,6 +23,7 @@ class CLI
        #Call method to add a beer
      when 4
        #Call method to end program
+     end
    end
 
    def list_beers
