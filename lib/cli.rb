@@ -1,4 +1,5 @@
 class CLI
+  attr_accessor :user_choice
 
    def start_program
      puts "Welcome to Kegatron 5000!"
@@ -10,6 +11,7 @@ class CLI
    end
 
    def main_menu
+     puts ""
      puts "Main Menu"
      puts "========================="
      puts "1. View Beer Selection"
@@ -49,7 +51,7 @@ class CLI
    def user_beer_choice
      beer_choice = gets.chomp
      Beer.all.each do |beer|
-       if beer_choice == beer.id
+       if beer_choice.to_i == beer.id
          @user_choice = beer
        end
      end
@@ -65,14 +67,15 @@ class CLI
 
      beer_details_choice = gets.chomp
 
-     case beer
-     when 1
-       puts "#{@user_choice.ingredients}"
-     when 2
-       puts "#{@user_choice.description}"
-     when 3
+     case beer_details_choice
+     when '1'
+       print_ingredients
+     when '2'
+       show_description
+     when '3'
        puts "#{@user.add_beer_to_favorites(@user_choice)}"
-     when 4
+       main_menu
+     when '4'
        main_menu
      else
        select_valid_option
@@ -99,6 +102,30 @@ class CLI
      puts "Please select a valid option"
    end
 
+   def print_ingredients
+     counter = 0
+     @user_choice.ingredients.each do |ingredient|
+       counter +=1
+       puts "#{counter}. #{ingredient.name}"
+     end
+     return_to_main_menu
+   end
+
+   def return_to_main_menu
+     puts ""
+     puts "Press 1 to go back to Main Menu"
+     input = gets.chomp
+     if input == '1'
+       main_menu
+     end
+   end
+
+   def show_description
+     puts ""
+     puts "Description:"
+     puts "#{@user_choice.description}"
+     return_to_main_menu
+   end
 
 
 
