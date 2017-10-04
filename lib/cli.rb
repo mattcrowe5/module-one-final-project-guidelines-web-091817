@@ -61,6 +61,7 @@ class CLI
    end
 
    def beer_details
+     puts ""
      puts "#{@user_choice.name}"
      puts "===================="
      puts "1. Recipe"
@@ -111,7 +112,7 @@ class CLI
        counter +=1
        puts "#{counter}. #{ingredient.name}"
      end
-     return_to_main_menu
+     beer_details_or_main_menu
    end
 
    def return_to_main_menu
@@ -123,11 +124,23 @@ class CLI
      end
    end
 
+   def beer_details_or_main_menu
+     puts ""
+     puts "Press 1 to go back to Main Menu, or 2 to go back to beer details"
+     input = gets.chomp
+     case input
+     when '1'
+       main_menu
+     when '2'
+       beer_details
+     end
+   end
+
    def show_description
      puts ""
      puts "Description:"
      puts "#{@user_choice.description}"
-     return_to_main_menu
+     beer_details_or_main_menu
    end
 
    def prompt_selection_of_beer_by_number
@@ -143,6 +156,7 @@ class CLI
    end
 
    def favorite_beer_details
+     puts ""
      puts "#{@user_choice.name}"
      puts "===================="
      puts "1. Recipe"
