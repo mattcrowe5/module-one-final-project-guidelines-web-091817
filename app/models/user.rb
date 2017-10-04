@@ -11,18 +11,6 @@ class User < ActiveRecord::Base
     self.beers.map {|beer| beer.name}
   end
 
-  # def list_favs  #REVISIT
-  #   puts "Favorite Beers"
-  #   puts "==============="
-  #   if self.beers.count > 0
-  #     self.beers.each do |beer|
-  #       puts "~ #{beer.name} ~"
-  #     end
-  #   elsif self.beers.count == 0
-  #     puts "You haven't saved any favorites yet!"
-  #   end
-  # end
-
   def remove_beer_from_favorites(beer)
     self.beers.each do |fav|
       self.beers.delete(fav) if fav.name == beer

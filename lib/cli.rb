@@ -44,7 +44,7 @@ class CLI
    end
 
    def list_beers
-     prompt_selection_of_beer_by_name
+     prompt_selection_of_beer_by_number
      counter = 0
      Beer.all.each do |beer|
        counter += 1
@@ -111,6 +111,9 @@ class CLI
    end
 
    def print_ingredients
+     puts ""
+     puts "Ingredients"
+     puts "============"
      counter = 0
      @user_choice.ingredients.each do |ingredient|
        counter +=1

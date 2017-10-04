@@ -30,7 +30,7 @@ class Adapter
         if value.class == Array
           value.each do |array|
             ingredient_object = Ingredient.find_or_create_by(name: "#{array['name']} #{key}")
-            beer_object.ingredients << ingredient_object
+            beer_object.ingredients << ingredient_object unless beer_object.ingredients.include?(ingredient_object)
           end
         else
           beer_object.ingredients << Ingredient.find_or_create_by(name: value)
