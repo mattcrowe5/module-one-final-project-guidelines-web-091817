@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 5) do
 
   create_table "beers", force: :cascade do |t|
     t.text "name"
+    t.text "description"
   end
 
   create_table "ingredients", force: :cascade do |t|

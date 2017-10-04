@@ -4,13 +4,8 @@ class Beer < ActiveRecord::Base
   has_many :userbeers
   has_many :users, through: :userbeers
 
-  def find_desc
-    parsed_hash = Adapter.get_beer_hash
-    parsed_hash.map do |beer|
-      if beer['name'] == self.name
-        beer['description']
-      end
-    end.compact.first
+  def self.list_beer_names
+    Beer.all.map {|beer| beer.name}
   end
 
 end
