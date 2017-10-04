@@ -5,7 +5,7 @@ class CLI
      puts "Welcome to Kegatron 5000!"
      puts "========================="
      puts "Please enter your name!"
-     name = gets.chomp
+     name = gets.chomp.downcase.capitalize
      @user = User.find_or_create_by(name: name)
      main_menu
    end
