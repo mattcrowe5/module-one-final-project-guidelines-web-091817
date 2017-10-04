@@ -31,7 +31,7 @@ class CLI
        beer_details
      when '2'
        prompt_selection_of_beer_by_name
-       @user.list_favs
+       list_favs
        user_favorite_beer_choice
        favorite_beer_details
      when '3'
@@ -102,6 +102,7 @@ class CLI
      puts "Please add description of new beer"
      response = gets.chomp
      new_beer.description = response
+     new_beer.save
      main_menu
    end
 
@@ -201,6 +202,19 @@ class CLI
        if beer_choice.downcase == beer.name.downcase
          @user_choice = beer
        end
+     end
+   end
+
+   def list_favs  #REVISIT
+     puts "Favorite Beers"
+     puts "==============="
+     if @user.beers.count > 0
+       @user.beers.each do |beer|
+         puts "~ #{beer.name} ~"
+       end
+     elsif @user.beers.count == 0
+       puts "You haven't saved any favorites yet!"
+       main_menu
      end
    end
 
