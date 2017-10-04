@@ -24,6 +24,7 @@ class CLI
      puts "========================="
 
      input = gets.chomp
+      system "clear"
      case input
      when '1'
        list_beers
@@ -55,6 +56,7 @@ class CLI
 
    def user_beer_choice
      beer_choice = gets.chomp
+      system "clear"
      Beer.all.each do |beer|
        if beer_choice.to_i == beer.id
          @user_choice = beer
@@ -72,6 +74,7 @@ class CLI
      puts "4. Main Menu"
 
      beer_details_choice = gets.chomp
+        system "clear"
 
      case beer_details_choice
      when '1'
@@ -126,7 +129,8 @@ class CLI
    def return_to_main_menu
      puts ""
      puts "Press 1 to go back to Main Menu"
-     input = gets.chomp
+     input = gets.
+        system "clear"
      if input == '1'
        main_menu
      end
@@ -136,6 +140,7 @@ class CLI
      puts ""
      puts "Press 1 to go back to Main Menu, or 2 to go back to beer details"
      input = gets.chomp
+        system "clear"
      case input
      when '1'
        main_menu
@@ -148,6 +153,7 @@ class CLI
      puts ""
      puts "Press 1 to go back to Main Menu, or 2 to go back to beer details"
      input = gets.chomp
+        system "clear"
      case input
      when '1'
        main_menu
@@ -183,6 +189,7 @@ class CLI
      puts "4. Main Menu"
 
      beer_details_choice = gets.chomp
+        system "clear"
 
      case beer_details_choice
      when '1'
@@ -204,6 +211,7 @@ class CLI
 
    def user_favorite_beer_choice
      beer_choice = gets.chomp
+        system "clear"
      Beer.all.each do |beer|
        if beer_choice.downcase == beer.name.downcase
          @user_choice = beer
