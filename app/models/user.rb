@@ -13,9 +13,13 @@ class User < ActiveRecord::Base
 
   def list_favs  #REVISIT
     puts "Favorite Beers"
-    puts ""
-    self.beers.each do |beer|
-      puts "~ #{beer.name} ~"
+    puts "==============="
+    if self.beers.count > 0
+      self.beers.each do |beer|
+        puts "~ #{beer.name} ~"
+      end
+    elsif self.beers.count == 0
+      puts "You haven't saved any favorites yet!"
     end
   end
 
