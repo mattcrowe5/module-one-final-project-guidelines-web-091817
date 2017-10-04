@@ -73,7 +73,7 @@ class CLI
      when '2'
        show_description
      when '3'
-       puts "#{@user.add_beer_to_favorites(@user_choice)}"
+       puts "#{@user.add_beer_to_favorites(@user_choice.name)}"
        main_menu
      when '4'
        main_menu
