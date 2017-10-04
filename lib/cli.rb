@@ -40,6 +40,7 @@ class CLI
        exit
      else
        select_valid_option
+       main_menu
      end
    end
 
@@ -86,6 +87,7 @@ class CLI
        main_menu
      else
        select_valid_option
+       beer_details
      end
 
    end
@@ -196,6 +198,7 @@ class CLI
        main_menu
      else
        select_valid_option
+       favorite_beer_details
      end
    end
 
