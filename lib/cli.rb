@@ -4,7 +4,7 @@ class CLI
    def start_program
      puts "Welcome to Kegatron 5000!"
      puts "========================="
-     puts "Please enter your name!"
+     puts "Please enter your first name!"
      name = gets.chomp.downcase.capitalize
      @user = User.find_or_create_by(name: name)
      main_menu
@@ -29,7 +29,10 @@ class CLI
        user_beer_choice
        beer_details
      when '2'
+       prompt_selection_of_beer_by_name
        @user.list_favs
+       user_favorite_beer_choice
+       favorite_beer_details
      when '3'
        add_new_beer
      when '4'
@@ -40,7 +43,7 @@ class CLI
    end
 
    def list_beers
-     puts "Please select a beer by number"
+     prompt_selection_of_beer_by_name
      counter = 0
      Beer.all.each do |beer|
        counter += 1
@@ -127,6 +130,51 @@ class CLI
      return_to_main_menu
    end
 
+   def prompt_selection_of_beer_by_number
+     puts ""
+     puts "Please select a beer by number"
+     puts ""
+   end
+
+   def prompt_selection_of_beer_by_name
+     puts ""
+     puts "Please select a beer by name"
+     puts ""
+   end
+
+   def favorite_beer_details
+     puts "#{@user_choice.name}"
+     puts "===================="
+     puts "1. Recipe"
+     puts "2. Description"
+     puts "3. Remove from Favorites"
+     puts "4. Main Menu"
+
+     beer_details_choice = gets.chomp
+
+     case beer_details_choice
+     when '1'
+       print_ingredients
+     when '2'
+       show_description
+     when '3'
+       puts "#{@user.remove_beer_from_favorites(@user_choice.name)}"
+       main_menu
+     when '4'
+       main_menu
+     else
+       select_valid_option
+     end
+   end
+
+   def user_favorite_beer_choice
+     beer_choice = gets.chomp
+     Beer.all.each do |beer|
+       if beer_choice.downcase == beer.name.downcase
+         @user_choice = beer
+       end
+     end
+   end
 
 
 

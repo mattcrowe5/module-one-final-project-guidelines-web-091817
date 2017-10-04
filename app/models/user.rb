@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
   end
 
   def list_favs  #REVISIT
-    counter = 0
+    puts "Favorite Beers"
+    puts ""
     self.beers.each do |beer|
-      counter += 1
-      puts "#{counter}. #{beer.name}"
+      puts "~ #{beer.name} ~"
     end
   end
 
