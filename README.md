@@ -1,4 +1,4 @@
-# Module One Final Project Guidelines
+<!-- # Module One Final Project Guidelines
 
 Congratulations, you're at the end of module one! You've worked crazy hard to get here and have learned a ton.
 
@@ -46,4 +46,48 @@ Projects need to be approved prior to launching into them, so take some time to 
       - Discuss 3 things you learned in the process of working on this project.
       - Address, if anything, what you would change or add to what you have today?
       - Present any code you would like to highlight.   
-7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process.
+7. *OPTIONAL, BUT RECOMMENDED*: Write a blog post about the project and process. -->
+
+*************  Description  *************
+A command line interface project that interacts with the Beer Punk Api("https://api.punkapi.com/v2/beers")
+Gives user access to a menu where they can choose to see a list of beers, favorites, or add a beer to the beer list.
+Upon selecting 'View Beer List' you will be given the option to view the recipe of your selected beer along with the description, and the ability to add the selected beer to your favorites.
+If from the main menu you select the 'View My Favorites' you'll be able to see a list of your favorites from which you can select and view details about each beer as well as remove them from favorites if your tastes change.
+Additionally if one of your favorite beers isn't listed in the re-built beer list, you can add your own from the main screen by selecting add beer and giving it a name, description, and ingredients.
+
+*************  Installation  *************
+To install:
+  - fork and clone the repository
+  - run bundle install to install necessary gems
+  - run rake db:migrate
+  - in the terminal run rake console and once in the console please run:
+      - Adapter.create_beers_and_ingredients
+      - Adapater.match_beers_ingredients
+  - Once you've completed these steps please enter ruby bin/run.rb to run the program!
+
+*************  Contributors Guide  *************
+
+Please follow standard Ruby formatting following best practices.
+
+*************  License *************
+MIT License
+
+Copyright (c) [2017] [Matt & Diego]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
