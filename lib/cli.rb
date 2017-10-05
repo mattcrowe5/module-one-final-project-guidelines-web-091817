@@ -107,6 +107,14 @@ class CLI
      puts "Please add description of new beer"
      response = gets.chomp
      new_beer.description = response
+     puts "Please add ingredients for new beer"
+     input = gets.chomp
+     while input != '1'
+       new_ingredient = Ingredient.create(name: input)
+       new_beer.ingredients << new_ingredient
+       puts "Please add next ingredient or press 1 to save new beer"
+       input = gets.chomp
+     end
      new_beer.save
      main_menu
    end
