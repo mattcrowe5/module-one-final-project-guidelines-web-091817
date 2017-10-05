@@ -97,26 +97,42 @@ class CLI
 
 
    def add_new_beer
+     set_name_of_new_beer
+     set_description_of_new_beer
+     set_ingredients_of_new_beer
+     save_new_beer
+     main_menu
+   end
+
+   def set_name_of_new_beer
      puts "Whats the name of your new beer?"
      beer_name = gets.chomp
      if Beer.list_beer_names.include?(beer_name)
        puts "That beer already exists!"
      else
-       new_beer = Beer.create(name: beer_name)
+       @new_beer = Beer.create(name: beer_name)
      end
+   end
+
+   def set_description_of_new_beer
      puts "Please add description of new beer"
      response = gets.chomp
-     new_beer.description = response
+     @new_beer.description = response
+   end
+
+   def set_ingredients_of_new_beer
      puts "Please add ingredients for new beer"
      input = gets.chomp
      while input != '1'
-       new_ingredient = Ingredient.create(name: input)
-       new_beer.ingredients << new_ingredient
+       new_ingredient = Ingredient.find_or_create_by(name: input)
+       @new_beer.ingredients << new_ingredient
        puts "Please add next ingredient or press 1 to save new beer"
        input = gets.chomp
      end
-     new_beer.save
-     main_menu
+   end
+
+   def save_new_beer
+     @new_beer.save
    end
 
    def select_valid_option
