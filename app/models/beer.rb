@@ -8,4 +8,8 @@ class Beer < ActiveRecord::Base
     Beer.all.map {|beer| beer.name}
   end
 
+  def self.list_id_numbers
+    Beer.all.map{|beer| beer.id}
+  end
+
 end

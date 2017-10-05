@@ -34,7 +34,6 @@ class CLI
        prompt_selection_of_beer_by_name
        list_favs
        user_favorite_beer_choice
-       favorite_beer_details
      when '3'
        add_new_beer
      when '4'
@@ -55,11 +54,17 @@ class CLI
    end
 
    def user_beer_choice
-     beer_choice = gets.chomp
+      beer_choice = gets.chomp
       system "clear"
-     Beer.all.each do |beer|
-       if beer_choice.to_i == beer.id
-         @user_choice = beer
+      if !Beer.list_id_numbers.include?(beer_choice.to_i)
+        select_valid_option
+        list_beers
+        user_beer_choice
+      else
+       Beer.all.each do |beer|
+         if beer_choice.to_i == beer.id
+           @user_choice = beer
+         end
        end
      end
    end
@@ -78,10 +83,10 @@ class CLI
 
      case beer_details_choice
      when '1'
-       print_ingredients
+       print_ingredients_general
        beer_details_or_main_menu
      when '2'
-       show_description
+       show_description_general
        beer_details_or_main_menu
      when '3'
        puts "#{@user.add_beer_to_favorites(@user_choice.name)}"
@@ -139,7 +144,7 @@ class CLI
      puts "Please select a valid option"
    end
 
-   def print_ingredients
+   def print_ingredients_general
      puts ""
      puts "Ingredients"
      puts "============"
@@ -149,6 +154,18 @@ class CLI
        puts "#{counter}. #{ingredient.name}"
      end
    end
+
+   def print_ingredients_fav
+     puts ""
+     puts "Ingredients"
+     puts "============"
+     counter = 0
+     @user_fav_choice.ingredients.each do |ingredient|
+       counter +=1
+       puts "#{counter}. #{ingredient.name}"
+     end
+   end
+
 
    def return_to_main_menu
      puts ""
@@ -186,10 +203,16 @@ class CLI
      end
    end
 
-   def show_description
+   def show_description_general
      puts ""
      puts "Description:"
      puts "#{@user_choice.description}"
+   end
+
+   def show_fav_description
+     puts ""
+     puts "Description:"
+     puts "#{@user_fav_choice.description}"
    end
 
    def prompt_selection_of_beer_by_number
@@ -205,7 +228,7 @@ class CLI
 
    def favorite_beer_details
      puts ""
-     puts "#{@user_choice.name}"
+     puts "#{@user_fav_choice.name}"
      puts "===================="
      puts "1. Recipe"
      puts "2. Description"
@@ -217,13 +240,13 @@ class CLI
 
      case beer_details_choice
      when '1'
-       print_ingredients
+       print_ingredients_fav
        favorite_details_or_main_menu
      when '2'
-       show_description
+       show_fav_description
        favorite_details_or_main_menu
      when '3'
-       puts "#{@user.remove_beer_from_favorites(@user_choice.name)}"
+       puts "#{@user.remove_beer_from_favorites(@user_fav_choice.name)}"
        main_menu
      when '4'
        main_menu
@@ -236,12 +259,21 @@ class CLI
    def user_favorite_beer_choice
      beer_choice = gets.chomp
         system "clear"
-     Beer.all.each do |beer|
-       if beer_choice.downcase == beer.name.downcase
-         @user_choice = beer
-       end
-     end
-   end
+     if !Beer.list_beer_names.include?(beer_choice.split.map(&:capitalize).join(' '))
+       select_valid_option
+       list_favs
+       user_favorite_beer_choice
+     else
+       Beer.all.each do |beer|
+         if beer_choice.downcase == beer.name.downcase
+           @user_fav_choice = beer
+         end
+        end
+      favorite_beer_details
+      end
+    end
+
+
 
    def list_favs  #REVISIT
      puts "Favorite Beers"
